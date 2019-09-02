@@ -2,20 +2,20 @@ import { all, call, fork, put, takeEvery } from "redux-saga/effects";
 import { IMetaAction } from "..";
 import apiCaller from "../../utils/apiCaller";
 import { fetchPostsError, fetchPostsSuccess } from "./actions";
-import { PostActionTypes } from "./types";
+import { IPostRaw, PostActionTypes } from "./types";
 
 /**
  * @desc Business logic of effect.
  */
 function* handleFetch(action: IMetaAction): Generator {
 	try {
-		const res = yield call(apiCaller, action.meta.method, action.meta.route);
+		const res: IPostRaw[] | any = yield call(
+			apiCaller,
+			action.meta.method,
+			action.meta.route
+		);
 
-		if (res.error) {
-			yield put(fetchPostsError(res.error));
-		} else {
-			yield put(fetchPostsSuccess(res));
-		}
+		yield put(fetchPostsSuccess(res));
 	} catch (err) {
 		if (err instanceof Error) {
 			yield put(fetchPostsError(err.stack!));
