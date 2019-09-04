@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import PostList from "../../components/postList";
 import { initialState } from "../../state/ducks/post/reducers";
-import PostListContainer from "../postList";
+import PostListContainer from "../postListContainer";
 
 configure({ adapter: new Adapter() });
 const mockStore = configureStore();

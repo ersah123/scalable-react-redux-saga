@@ -1,3 +1,4 @@
+import { IMetaAction } from "..";
 export interface IPostState {
 	readonly data: IPostRaw[];
 	readonly loading: boolean;
@@ -15,3 +16,7 @@ export const PostActionTypes = {
 	FETCH_POSTS_SUCCESS: "@@post/FETCH_POSTS_SUCCESS",
 	FETCH_POSTS_ERROR: "@@post/FETCH_POSTS_ERROR"
 };
+
+export interface IDispatchToProps {
+	fetchPosts: () => IMetaAction;
+}
